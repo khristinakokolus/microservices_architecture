@@ -11,7 +11,7 @@ messages = dict()
 
 @app.route('/logging_service', methods=['GET'])
 def get_data():
-    return list(messages.values())[::-1]
+    return str(list(messages.values())[::-1])
 
 
 @app.route('/logging_service', methods=['POST'])
