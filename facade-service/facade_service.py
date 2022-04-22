@@ -11,11 +11,14 @@ message_service = "http://localhost:8081/message_service"
 
 
 def get_data():
-    logging_service = random.choice(logging_services)
-    logging_service_data = requests.get(logging_service).text
-    message_service_data = requests.get(message_service).text
-    data = logging_service_data + ": " + message_service_data
-    return data
+    try:
+        logging_service = random.choice(logging_services)
+        logging_service_data = requests.get(logging_service).text
+        message_service_data = requests.get(message_service).text
+        data = logging_service_data + ": " + message_service_data
+        return data
+    except requests.exceptions.ConnectionError:
+        return "Error occurred"
 
 
 def post_message():

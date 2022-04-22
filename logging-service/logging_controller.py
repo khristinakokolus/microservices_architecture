@@ -1,5 +1,4 @@
-import sys
-sys.path.append(r"c:\users\user\appdata\local\schrodinger\pymol2\lib\site-packages")
+import argparse
 from flask import Flask, request
 import logging
 
@@ -15,7 +14,6 @@ app = Flask(__name__)
 @app.route('/logging_service', methods=['GET'])
 def get():
     messages = get_data()
-    print(type(messages))
     return "[" + ", ".join(list(messages.values())) + "]"
 
 
@@ -27,5 +25,7 @@ def post():
 
 
 if __name__ == '__main__':
-    #app.run(port=int(sys.argv[1]))
-    app.run(port=8082)
+    parser = argparse.ArgumentParser(description='Process port number')
+    parser.add_argument('--port', type=int)
+    args = parser.parse_args()
+    app.run(port=args.port)
