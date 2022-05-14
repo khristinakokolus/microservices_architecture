@@ -1,13 +1,21 @@
-from flask import Flask
+import hazelcast
+
+hz_client = hazelcast.HazelcastClient()
+queue = hz_client.get_queue("distributed_messages_queue").blocking()
 
 
-app = Flask(__name__)
+def consumer():
+    items = []
+    while not queue.is_empty():
+        item = queue.take()
+        items.append(item["message"])
+    return items
 
 
-@app.route('/message_service', methods=['GET'])
-def get_data():
-    return "messages-service is not implemented yet"
+def producer(message):
+    queue.put(message)
 
+    return {
+        "statusCode": 200
+    }
 
-if __name__ == '__main__':
-    app.run(port=8081)

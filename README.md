@@ -1,4 +1,4 @@
-# Third lab: Microservices using Hazelcast Distributed Map
+# 4 lab: Microservices using the Messaging queue
 
 
 ## Prerequisites
@@ -33,21 +33,21 @@ Running logging service:
 cd logging-service
 python3 logging_controller.py --port {port on which to run}
 ```
-Here you can run three instances using 8082, 8083, 8084 ports.
+Here you can run three instances using 8083, 8084, 8085 ports.
 
 
 Running messages service:
 
 ```
 cd messages-service
-python3 messages_service.py
+python3 messages_service.py --port {port on which to run}
 ```
 
-Here default port is 8081.
+Here you can run two instances using 8081, 8082 ports.
 
 
 Requests can be sent using ```requests.http``` or using some other tool such Postman.
 
 ## Results
 
-Results are in Lab3_protocol_Kokolus.pdf
+Results are in Lab4_protocol_Kokolus.pdf
