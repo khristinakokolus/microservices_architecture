@@ -18,6 +18,10 @@ pip install -r requirements.txt
 
 ## Usage
 
+NOTE: First need to start set up Hazelcast client locally
+
+Go here [Getting started with Hazelcast](https://hazelcast.org/imdg/get-started/)
+
 Running facade service:
 
 ```
