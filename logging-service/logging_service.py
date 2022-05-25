@@ -1,7 +1,7 @@
 import hazelcast
 
 hz_client = hazelcast.HazelcastClient()
-messages = hz_client.get_map("distributed_logging_map").blocking()
+messages = hz_client.get_map("logging_map_distributed").blocking()
 
 
 def get_data():

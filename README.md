@@ -22,16 +22,17 @@ Running facade service:
 
 ```
 cd facade-service
-python3 facade_controller.py
+export FLASK_APP=facade_controller
+flask run --port 8080
 ```
-Here default port is 8080.
 
 
 Running logging service: 
 
 ```
 cd logging-service
-python3 logging_controller.py --port {port on which to run}
+export FLASK_APP=logging_controller
+flask run --port {port on which to run}
 ```
 Here you can run three instances using 8083, 8084, 8085 ports.
 
@@ -40,7 +41,8 @@ Running messages service:
 
 ```
 cd messages-service
-python3 messages_service.py --port {port on which to run}
+export FLASK_APP=messages_controller
+flask run --port {port on which to run}
 ```
 
 Here you can run two instances using 8081, 8082 ports.

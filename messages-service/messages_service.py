@@ -1,21 +1,23 @@
 import hazelcast
+import logging
+
+
+logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
+                    level=logging.INFO,
+                    datefmt='%Y-%m-%d %H:%M:%S')
 
 hz_client = hazelcast.HazelcastClient()
-queue = hz_client.get_queue("distributed_messages_queue").blocking()
+distributed_queue = hz_client.get_queue("messages_queue_distributed").blocking()
+messages = []
 
 
-def consumer():
-    items = []
-    while not queue.is_empty():
-        item = queue.take()
-        items.append(item["message"])
-    return items
+def get_messages():
+    return messages
 
 
-def producer(message):
-    queue.put(message)
 
-    return {
-        "statusCode": 200
-    }
-
+def post_messages():
+    while True:
+        message = distributed_queue.take()
+        logging.info(message)
+        messages.append(message["message"])

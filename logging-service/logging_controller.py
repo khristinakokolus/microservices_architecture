@@ -1,4 +1,3 @@
-import argparse
 from flask import Flask, request
 import logging
 
@@ -23,9 +22,3 @@ def post():
     logging.info(message_data)
     return post_message(message_data)
 
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Process port number')
-    parser.add_argument('--port', type=int)
-    args = parser.parse_args()
-    app.run(port=args.port)
